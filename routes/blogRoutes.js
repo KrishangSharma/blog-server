@@ -7,6 +7,7 @@ const {
   getById,
   deleteBlog,
 } = require("../controller/blogController");
+const { authenticate } = require("../middleware/authMiddleware");
 
 // Router Setup
 const router = express.Router();
@@ -23,18 +24,18 @@ router.get("/", (req, res) => {
 
 // @method  POST
 // @desc    Upload blogs to DB
-router.post("/upload", upload.array("images", 8), uploadBlog);
+router.post("/upload", authenticate, upload.array("images", 8), uploadBlog);
 
 // @method  GET
 // @desc    Get all blogs
-router.get("/get/all", getAllBlogs);
+router.get("/get/all", authenticate, getAllBlogs);
 
 // @method  GET
 // @desc    Get blog by ID
-router.get("/get/:id", getById);
+router.get("/get/:id", authenticate, getById);
 
 // @method  DELETE
 // @desc    Delete blog
-router.delete("/delete/:id", deleteBlog);
+router.delete("/delete/:id", authenticate, deleteBlog);
 
 module.exports = router;
