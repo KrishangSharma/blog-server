@@ -6,7 +6,11 @@ const uploadBlog = async (req, res) => {
   try {
     // Check if 'images' field is present in the request
     if (!req.files || req.files.length === 0) {
-      return res.status(400).json({ message: "No files uploaded" });
+      return res
+        .status(100)
+        .json({
+          message: "No files uploaded, proceeding with blof uploading!",
+        });
     }
 
     const imageUploadPromises = req.files.map(async (file) => {
