@@ -12,7 +12,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://blog-application-ufvo.onrender.com",
+    origin: "*",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
   })
