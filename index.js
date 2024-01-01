@@ -10,7 +10,13 @@ const port = process.env.PORT || 3000;
 // Create instance of express
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://blog-application-ufvo.onrender.com",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+  })
+);
 
 // Enable routes
 app.use(blogRoutes);
