@@ -18,9 +18,6 @@ app.use(
   })
 );
 
-// Enable routes
-app.use(blogRoutes);
-
 // Start the Server
 app.listen(port, () => {
   console.log(`Server running on port: ${port}`);
@@ -35,3 +32,6 @@ mongoose
   .catch((err) => {
     console.log("Error connecting to database! Message:", err.message);
   });
+
+// Enable routes
+app.use(blogRoutes);
