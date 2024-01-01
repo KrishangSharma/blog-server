@@ -11,12 +11,20 @@ const port = process.env.PORT || 3000;
 const app = express();
 
 app.use((req, res, next) => {
-  res.set({
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "*",
-    "Access-Control-Allow-Headers":
-      "'Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token'",
-  });
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://blog-application-ufvo.onrender.com/"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS,CONNECT,TRACE"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Authorization, X-Content-Type-Options, Accept, X-Requested-With, Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+  );
+  res.setHeader("Access-Control-Allow-Credentials", true);
+  res.setHeader("Access-Control-Allow-Private-Network", true);
 
   next();
 });
