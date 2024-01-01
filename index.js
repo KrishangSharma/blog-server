@@ -9,6 +9,7 @@ const port = process.env.PORT || 3000;
 
 // Create instance of express
 const app = express();
+app.use(cors());
 
 app.use((req, res, next) => {
   res.setHeader(
