@@ -11,10 +11,7 @@ const port = process.env.PORT || 3000;
 const app = express();
 
 app.use((req, res, next) => {
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "https://blog-application-ufvo.onrender.com"
-  );
+  res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
     "Access-Control-Allow-Methods",
     "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS,CONNECT,TRACE"
@@ -28,8 +25,6 @@ app.use((req, res, next) => {
 
   next();
 });
-
-app.use(cors());
 
 // Start the Server
 app.listen(port, () => {
