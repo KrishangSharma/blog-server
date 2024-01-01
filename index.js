@@ -28,7 +28,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://blog-application-ufvo.onrender.com/",
+    origin: "https://blog-application-ufvo.onrender.com",
   })
 );
 
