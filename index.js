@@ -9,7 +9,10 @@ const port = process.env.PORT || 3000;
 
 // Create instance of express
 const app = express();
-app.use(cors());
+const corsOptions = {
+  origin: "http://localhost:5173",
+};
+app.use(cors(corsOptions));
 
 // Start the Server
 app.listen(port, () => {
