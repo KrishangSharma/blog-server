@@ -9,33 +9,7 @@ const port = process.env.PORT || 3000;
 
 // Create instance of express
 const app = express();
-// app.use(cors());
-
-// app.all("/", function (req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers", "X-Requested-With");
-//   next();
-// });
-
-app.use((req, res, next) => {
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "*"
-    // "https://blog-application-ufvo.onrender.com, http://localhost:5173"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS,CONNECT,TRACE"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Content-Type, Authorization, X-Content-Type-Options, Accept, X-Requested-With, Origin, Access-Control-Request-Method, Access-Control-Request-Headers, api-key"
-  );
-  res.setHeader("Access-Control-Allow-Credentials", true);
-  res.setHeader("Access-Control-Allow-Private-Network", true);
-
-  next();
-});
+app.use(cors());
 
 // Start the Server
 app.listen(port, () => {
