@@ -20,7 +20,8 @@ const app = express();
 app.use((req, res, next) => {
   res.setHeader(
     "Access-Control-Allow-Origin",
-    "https://blog-application-ufvo.onrender.com"
+    "*"
+    // "https://blog-application-ufvo.onrender.com, http://localhost:5173"
   );
   res.setHeader(
     "Access-Control-Allow-Methods",
