@@ -10,6 +10,10 @@ const blogModel = new mongoose.Schema(
       type: String,
       required: true,
     },
+    description: {
+      type: String,
+      required: true,
+    },
     images: {
       type: [],
       required: true,
