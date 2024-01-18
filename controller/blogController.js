@@ -36,10 +36,10 @@ const uploadBlog = async (req, res) => {
     // Wait for all image uploads to complete
     const imageUrls = await Promise.all(imageUploadPromises);
 
-    const { title, content } = req.body;
+    const { title, content, description } = req.body;
 
     // Validate and construct the blog object
-    if (!title || !content) {
+    if (!title || !content || !description) {
       return res
         .status(400)
         .json({ message: "Required fields cannot be empty" });
@@ -48,6 +48,7 @@ const uploadBlog = async (req, res) => {
     const newBlog = new Blog({
       title,
       content,
+      description,
       images: imageUrls,
     });
 
