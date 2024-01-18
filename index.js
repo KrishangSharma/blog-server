@@ -10,7 +10,7 @@ const port = process.env.PORT || 3000;
 // Create instance of express
 const app = express();
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: "*",
 };
 app.use(cors(corsOptions));
 
