@@ -6,8 +6,6 @@ const {
   getAllBlogs,
   getById,
   deleteBlog,
-  likeBlog,
-  dislikeBlog,
 } = require("../controller/blogController");
 const { authenticate } = require("../middleware/authMiddleware");
 
@@ -27,14 +25,6 @@ router.get("/", (req, res) => {
 // @method  POST
 // @desc    Upload blogs to DB
 router.post("/upload", authenticate, upload.array("images", 8), uploadBlog);
-
-// @method  PUT
-// @desc    Like a blog
-router.put("/blog/like/:id", authenticate, likeBlog);
-
-// @method  PUT
-// @desc    Disike a blog
-router.put("/blog/dislike/:id", authenticate, dislikeBlog);
 
 // @method  GET
 // @desc    Get all blogs
