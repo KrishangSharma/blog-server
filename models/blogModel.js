@@ -18,6 +18,11 @@ const blogModel = new mongoose.Schema(
       type: [],
       required: true,
     },
+    likes: {
+      type: Number,
+      min: 0,
+      default: 0,
+    },
   },
   { timestamps: true }
 );

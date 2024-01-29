@@ -64,6 +64,27 @@ const uploadBlog = async (req, res) => {
   }
 };
 
+// Like a blog
+const likeBlog = async (req, res) => {
+  try {
+    // Get blog ID
+    const blogId = req.params.id;
+
+    // Find the blog
+    const blog = await Blog.findById({ _id: blogId });
+
+    // Update the Likes Count and save
+    blog.likes = blog.likes + 1;
+
+    blog.save();
+
+    return res.status(200).json({ message: "Response recorded!" });
+  } catch (err) {
+    console.log(err.message);
+    return res.status(500).json({ message: "Server Error!" });
+  }
+};
+
 // Get ALL blogs
 const getAllBlogs = async (req, res) => {
   try {
@@ -135,4 +156,5 @@ module.exports = {
   getAllBlogs,
   getById,
   deleteBlog,
+  likeBlog,
 };
