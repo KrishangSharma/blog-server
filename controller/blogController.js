@@ -78,7 +78,7 @@ const dislikeBlog = async (req, res) => {
 
     blog.save();
 
-    return res.status(200).json({ message: "Response recorded!" });
+    return res.status(200).json({ message: "Response recorded!", likes });
   } catch (err) {
     console.log(err.message);
     return res.status(500).json({ message: "Server Error!" });
