@@ -19,7 +19,7 @@ You will need to provide 6 env variables, they are listed below:
  2. CLOUDINARY_CLOUD_NAME
  3. CLOUDINARY_API_KEY
  4. CLOUDINARY_API_SECRET
- 5. API_SECRET: this is for very basic authentication and should be same in both, the server and the [client](https://github.com/KrishangSharma/blog-client).
+ 5. API_SECRET: this is for very basic authentication and should be same in both, the server and the [client](https://github.com/KrishangSharma/blog-client) It is important to note that you won't be able to interact with the server, because of the `API_SECRET`.
  6. PORT(optional, defaults to 3000)
 
 After setting up the variables, you can now start the dev server with `npm run dev`, if everything was set up correctly, you will see:
