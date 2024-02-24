@@ -18,6 +18,12 @@ const blogModel = new mongoose.Schema(
       type: [],
       required: true,
     },
+    comments: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Comment",
+      },
+    ],
   },
   { timestamps: true }
 );

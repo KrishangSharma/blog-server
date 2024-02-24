@@ -1,4 +1,5 @@
 const Blog = require("../models/blogModel");
+const Comment = require("../models/commentModel");
 const cloudinary = require("../cloudinary-config");
 
 // Upload Blog
@@ -80,7 +81,7 @@ const getById = async (req, res) => {
   try {
     const id = req.params.id;
 
-    const blog = await Blog.findById(id);
+    const blog = await Blog.findById(id).populate("comments");
 
     res.status(200).json({ blog });
   } catch (err) {
@@ -130,9 +131,39 @@ const deleteBlog = async (req, res) => {
   }
 };
 
+// Post a comment
+const postComment = async (req, res) => {
+  try {
+    const blogID = req.params.id;
+    const { comment, name } = req.body;
+
+    // Construct a comment
+    const newComment = new Comment({
+      name,
+      comment,
+    });
+
+    // Save the new comment to the database
+    await newComment.save();
+
+    // Find the blog and update its comments array
+    const blog = await Blog.findByIdAndUpdate(
+      blogID,
+      { $push: { comments: newComment._id } },
+      { new: true }
+    ).populate("comments");
+
+    res.status(200).json({ message: "Comment posted!", blog });
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).json({ message: "Server Error! Please try again later" });
+  }
+};
+
 module.exports = {
   uploadBlog,
   getAllBlogs,
   getById,
   deleteBlog,
+  postComment,
 };

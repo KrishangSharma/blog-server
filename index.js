@@ -9,6 +9,7 @@ const port = process.env.PORT || 3000;
 
 // Create instance of express
 const app = express();
+app.use(express.json());
 const corsOptions = {
   origin: "*",
 };

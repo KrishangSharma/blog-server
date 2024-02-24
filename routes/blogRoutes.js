@@ -6,6 +6,7 @@ const {
   getAllBlogs,
   getById,
   deleteBlog,
+  postComment,
 } = require("../controller/blogController");
 const { authenticate } = require("../middleware/authMiddleware");
 
@@ -37,5 +38,9 @@ router.get("/get/:id", authenticate, getById);
 // @method  DELETE
 // @desc    Delete blog
 router.delete("/delete/:id", authenticate, deleteBlog);
+
+// @method  POST
+// @desc    Post a comment
+router.post("/:id/comment", authenticate, postComment);
 
 module.exports = router;
