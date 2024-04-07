@@ -40,8 +40,4 @@ router.get("/get/:shortTitle", authenticate, getByName);
 // @desc    Delete blog
 router.delete("/delete/:id", authenticate, deleteBlog);
 
-// @method  POST
-// @desc    Post a comment
-router.post("/:id/comment", authenticate, postComment);
-
 module.exports = router;
