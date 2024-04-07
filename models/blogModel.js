@@ -6,6 +6,11 @@ const blogModel = new mongoose.Schema(
       type: String,
       required: true,
     },
+    shortTitle: {
+      type: String,
+      required: true,
+      unique: true,
+    },
     content: {
       type: String,
       required: true,
@@ -14,16 +19,13 @@ const blogModel = new mongoose.Schema(
       type: String,
       required: true,
     },
+    coverImage: {
+      type: String,
+    },
     images: {
       type: [],
       required: true,
     },
-    comments: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Comment",
-      },
-    ],
   },
   { timestamps: true }
 );

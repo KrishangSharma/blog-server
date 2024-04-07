@@ -4,7 +4,7 @@ const express = require("express");
 const {
   uploadBlog,
   getAllBlogs,
-  getById,
+  getByName,
   deleteBlog,
   postComment,
 } = require("../controller/blogController");
@@ -25,6 +25,7 @@ router.get("/", (req, res) => {
 
 // @method  POST
 // @desc    Upload blogs to DB
+// @info    Out of the 8 images, the first one is the cover image(images[0])
 router.post("/upload", authenticate, upload.array("images", 8), uploadBlog);
 
 // @method  GET
@@ -33,7 +34,7 @@ router.get("/get/all", authenticate, getAllBlogs);
 
 // @method  GET
 // @desc    Get blog by ID
-router.get("/get/:id", authenticate, getById);
+router.get("/get/:shortTitle", authenticate, getByName);
 
 // @method  DELETE
 // @desc    Delete blog

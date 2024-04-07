@@ -1,5 +1,4 @@
 const Blog = require("../models/blogModel");
-const Comment = require("../models/commentModel");
 const cloudinary = require("../cloudinary-config");
 
 // Upload Blog
@@ -36,8 +35,10 @@ const uploadBlog = async (req, res) => {
 
     // Wait for all image uploads to complete
     const imageUrls = await Promise.all(imageUploadPromises);
+    const coverImg = imageUrls[0];
+    const blogImgs = imageUrls.slice(1);
 
-    const { title, content, description } = req.body;
+    const { title, shortTitle, content, description } = req.body;
 
     // Validate and construct the blog object
     if (!title || !content || !description) {
@@ -48,9 +49,11 @@ const uploadBlog = async (req, res) => {
 
     const newBlog = new Blog({
       title,
+      shortTitle,
       content,
       description,
-      images: imageUrls,
+      coverImage: coverImg,
+      images: blogImgs,
     });
 
     // Save the blog to DB
@@ -76,12 +79,12 @@ const getAllBlogs = async (req, res) => {
   }
 };
 
-// Get blog by ID
-const getById = async (req, res) => {
+// Get blog by short title
+const getByName = async (req, res) => {
   try {
-    const id = req.params.id;
+    const shortTitle = req.params.shortTitle;
 
-    const blog = await Blog.findById(id).populate("comments");
+    const blog = await Blog.findOne({ shortTitle });
 
     res.status(200).json({ blog });
   } catch (err) {
@@ -163,7 +166,7 @@ const postComment = async (req, res) => {
 module.exports = {
   uploadBlog,
   getAllBlogs,
-  getById,
+  getByName,
   deleteBlog,
   postComment,
 };
