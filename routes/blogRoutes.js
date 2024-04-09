@@ -6,7 +6,6 @@ const {
   getAllBlogs,
   getByName,
   deleteBlog,
-  postComment,
 } = require("../controller/blogController");
 const { authenticate } = require("../middleware/authMiddleware");
 
